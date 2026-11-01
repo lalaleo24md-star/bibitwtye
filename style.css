@@ -1,0 +1,21 @@
+/* Custom Fonts */
+body {
+  font-family: 'Prompt', sans-serif;
+}
+
+/* Floating animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-12px) rotate(3deg); }
+}
+
+.float-anim {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* Radio button custom highlight styling */
+.radio-card:has(input:checked) {
+  background-color: #b8d2f4;
+  border-color: #1484c1ed;
+  box-shadow: 0 0 0 1px #5ab2e1ed;
+}

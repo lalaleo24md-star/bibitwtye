@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>twtye</title>
+  
+  <!-- Google Fonts: Prompt -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- FontAwesome Icons (สำหรับไอคอนปุ่มหรือสัญลักษณ์อื่นๆ ทั่วไป) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Favicon เปลี่ยนเป็นรูปของคุณ[cite: 1] -->
+  <link rel="icon" type="image/jpeg" href="icon.jpg">
+</head>
+<body class="bg-blue-50 text-slate-700 min-h-screen flex items-center justify-center p-4">
+
+  <!-- Floating Background Elements -->
+  <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
+    <div class="absolute top-10 left-10 text-blue-200 text-4xl float-anim" style="animation-delay: 0s;"><i class="fa-solid fa-heart"></i></div>
+    <div class="absolute bottom-20 left-1/4 text-blue-300 text-6xl float-anim" style="animation-delay: 1s;"><i class="fa-solid fa-cloud"></i></div>
+    <div class="absolute top-1/3 right-10 text-sky-200 text-5xl float-anim" style="animation-delay: 2s;"><i class="fa-solid fa-star"></i></div>
+    <div class="absolute bottom-10 right-1/3 text-blue-200 text-3xl float-anim" style="animation-delay: 1.5s;"><i class="fa-solid fa-heart"></i></div>
+  </div>
+
+  <!-- Main Container -->
+  <main class="w-full max-w-md md:max-w-xl bg-white/90 backdrop-blur-md rounded-3xl shadow-xl border border-blue-100 p-6 md:p-8 relative z-10 my-6 transition-all duration-300">
+    
+    <!-- Header Title -->
+    <header class="text-center mb-6">
+      <h1 class="text-3xl md:text-4xl font-bold text-blue-600 tracking-wide flex items-center justify-center gap-2">
+        <span>twtye</span>
+        <i class="fa-solid fa-sparkles text-amber-400 text-xl"></i>
+      </h1>
+    </header>
+
+    <!-- PAGE 1: START / WELCOME PAGE -->
+    <section id="page-start" class="page-step text-center space-y-6">
+      <!-- เปลี่ยนจากไอคอนเดิม มาใช้รูปภาพ icon.jpg[cite: 1] -->
+      <div class="w-28 h-28 rounded-full overflow-hidden mx-auto shadow-md border-4 border-white float-anim">
+        <img src="icon.jpg" alt="Our Picture" class="w-full h-full object-cover">
+      </div>
+      
+      <div class="space-y-3">
+        <h2 class="text-xl md:text-2xl font-semibold text-slate-800">คิดถึงโปเต้มั้ยยย หุหุ</h2>
+        <p class="text-sm text-slate-500 leading-relaxed px-4">
+          ช่วยเขียนด้วยความจริงใจที่สุดนะครับ เค้ารออ่านไม่ว่าจะตอบแบบไหนเค้าจะเคารพการตัดสินใจของอ้วน 
+        </p>
+      </div>
+
+      <!-- ปุ่มเริ่มเข้าสู่แอพ -->
+      <button onclick="nextPage('page-feedback')" class="btn-primary w-full py-3.5 bg-blue-500 hover:bg-blue-600 text-white font-medium rounded-2xl shadow-md shadow-blue-200 transition-all text-lg flex items-center justify-center gap-2">
+        <span>เริ่มเลย</span>
+        <i class="fa-solid fa-arrow-right text-sm"></i>
+      </button>
+    </section>
+
+    <!-- PAGE 2: FEEDBACK FORM -->
+    <section id="page-feedback" class="page-step space-y-5 hidden">
+      <div class="border-b border-blue-100 pb-3">
+        <h2 class="text-lg font-semibold text-blue-600 flex items-center gap-2">
+          <i class="fa-solid fa-comment-dots"></i> 
+        </h2>
+      </div>
+
+      <form id="feedback-form" onsubmit="handleFeedbackSubmit(event)" class="space-y-4">
+        <!-- 1. ข้อผิดพลาดที่เราทำพลาด -->
+        <div>
+          <label class="block text-sm font-medium text-slate-700 mb-1">
+            1. อยากจะบอกอะไรเค้ามั้ย (อะไรก็ได้ความรู้สึกบลาๆ)
+          </label>
+          <textarea id="fb-mistakes" required rows="3" class="w-full p-3 text-sm rounded-xl border border-blue-200 focus:ring-2 focus:ring-blue-400 focus:outline-none transition-all resize-none" placeholder="พิมพ์สิ่งที่เราเคยทำให้รู้สึกไม่ดีหรือละเลยไป..."></textarea>
+        </div>
+
+        <!-- 2. สิ่งที่ควรปรับปรุง -->
+        <div>
+          <label class="block text-sm font-medium text-slate-700 mb-1">
+            2. ถ้าเราไปต่อด้วยกันอยากให้ปรับปรุงตรงไหนบ้าง(ถ้าไม่ไปต่อแล้วตอบ - ก็ได้)
+          </label>
+          <textarea id="fb-improvement" required rows="3" class="w-full p-3 text-sm rounded-xl border border-blue-200 focus:ring-2 focus:ring-blue-400 focus:outline-none transition-all resize-none" placeholder="อยากให้เราปรับเปลี่ยนพฤติกรรมอะไรบ้าง..."></textarea>
+        </div>
+
+        <!-- 3. ประเมินแนวโน้มที่จะกลับมา -->
+        <div>
+          <label class="block text-sm font-medium text-slate-700 mb-2">
+            3. คิดว่าเราจะกลับมาอยู่ด้วยกันได้ไหม?
+          </label>
+          <div class="grid grid-cols-2 gap-3">
+            <label class="radio-card border border-blue-200 rounded-xl p-3 flex items-center gap-2 cursor-pointer hover:bg-blue-50 transition-all">
+              <input type="radio" name="trend" value="yes" required class="text-blue-500 focus:ring-blue-400">
+              <span class="text-sm font-medium text-slate-700">ได้สิ</span>
+            </label>
+            <label class="radio-card border border-blue-200 rounded-xl p-3 flex items-center gap-2 cursor-pointer hover:bg-blue-50 transition-all">
+              <input type="radio" name="trend" value="no" class="text-blue-500 focus:ring-blue-400">
+              <span class="text-sm font-medium text-slate-700">ไม่ได้แล้ว</span>
+            </label>
+          </div>
+        </div>
+
+        <button type="submit" class="w-full py-3 bg-blue-500 hover:bg-blue-600 text-white font-medium rounded-xl shadow-md transition-all mt-4">
+          ถัดไป (ไปตอบคำถาม)
+        </button>
+      </form>
+    </section>
+
+<!-- PAGE 3: QUESTION QUIZ (A B C D) -->
+    <section id="page-quiz" class="page-step space-y-5 hidden">
+      <div class="flex justify-between items-center border-b border-blue-100 pb-3">
+        <span class="text-xs font-semibold px-3 py-1 bg-blue-100 text-blue-600 rounded-full" id="quiz-progress">ข้อที่ 1 / 2</span>
+        <h2 class="text-sm font-medium text-slate-400">เบบิตอบน่ารักๆหน่อยนะ หุหุ</h2>
+      </div>
+
+      <!-- Question Text Container -->
+      <div id="quiz-container" class="space-y-4">
+        <h3 id="question-text" class="text-base font-semibold text-slate-800">
+          <!-- ข้อความคำถามจะถูกใส่ผ่าน JS -->
+        </h3>
+
+        <!-- Choices A, B, C, D -->
+        <div class="space-y-2.5" id="options-container">
+          <!-- ปุ่มเลือกจะถูกเรนเดอร์ผ่าน JS -->
+        </div>
+
+        <!-- กล่องสำหรับพิมพ์ข้อความเอง กรณีเลือกข้อ D -->
+        <div id="custom-answer-container" class="hidden space-y-3 pt-2">
+          <textarea id="custom-answer-input" rows="2" class="w-full p-3 text-sm rounded-xl border border-blue-200 focus:ring-2 focus:ring-blue-400 focus:outline-none transition-all resize-none" placeholder="พิมพ์คำตอบอื่นๆ ของคุณตรงนี้..."></textarea>
+          <button onclick="submitCustomAnswer()" class="w-full py-2.5 bg-blue-500 hover:bg-blue-600 text-white font-medium rounded-xl text-sm transition-all shadow">
+            โอเค
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAGE 4: CHEERFUL ENDING (มีแนวโน้มกลับมา) -->
+    <section id="page-happy-ending" class="page-step text-center space-y-5 hidden">
+      <div class="w-20 h-20 bg-emerald-100 rounded-full flex items-center justify-center mx-auto text-emerald-500 text-4xl shadow-inner float-anim">
+        <i class="fa-solid fa-sun text-amber-400"></i>
+      </div>
+
+      <div class="space-y-2">
+        <h2 class="text-2xl font-bold text-emerald-600">เย้ๆกดฟกฟหกาฟ้ไก่าฟ</h2>
+      </div>
+
+      <!-- โซนข้อความสดใส (แก้ไขเพิ่มโค้ด/ข้อความได้เต็มที่ตรงนี้) -->
+      <div class="bg-emerald-50/70 border border-emerald-200 rounded-2xl p-4 text-left text-xs md:text-sm text-slate-700 leading-relaxed space-y-3 max-h-60 overflow-y-auto">
+        <!-- ========================================================
+             [คอมเม้นสำหรับนักพัฒนา / เจ้าของแอพ]
+             สามารถแก้ไขข้อความสดใส ความทรงจำดีๆ หรือคำสัญญาเพิ่มเติมตรงนี้ได้เลย
+             ======================================================== -->
+        <p>ขอบคุณนะที่เบบิยังเลือกเค้า ขอบคุณมากนะเบบิเค้าจะพยายามทำให้แฟนภูมิใจเค้าให้ได้เร็วๆเลย เค้าอาจจะสำเร็จช้าเพราะมีหลายๆเรื่องที่ต้องผ่านมันด้วยตัวเองแต่ก็จะพยานามให้เบบิได้เห็นเค้าในอีกมุนให้เร็วที่จุ๊ดดดด</p>
+        <p>รักแฟนที่สุดดดในโลกกกกก</p>
+      </div>
+
+      <button onclick="restartApp()" class="w-full py-3 bg-emerald-500 hover:bg-emerald-600 text-white font-medium rounded-xl text-sm transition-all shadow">
+        ไม่ให้ไปไหนแล้วนะ ไม่ให้ตอบใหม่ด้วย
+      </button>
+    </section>
+
+    <!-- PAGE 5: SAD ENDING (ไม่มีแนวโน้มกลับมา) -->
+    <section id="page-sad-ending" class="page-step text-center space-y-5 hidden">
+      <div class="w-20 h-20 bg-slate-200 rounded-full flex items-center justify-center mx-auto text-slate-500 text-3xl shadow-inner">
+        <i class="fa-solid fa-cloud-rain"></i>
+      </div>
+
+      <div class="space-y-2">
+        <h2 class="text-2xl font-bold text-slate-600">ขอบคุณนะ</h2>
+      </div>
+
+      <!-- โซนข้อความเศร้า (แก้ไขเพิ่มโค้ด/ข้อความได้เต็มที่ตรงนี้) -->
+      <div class="bg-slate-100 border border-slate-200 rounded-2xl p-4 text-left text-xs md:text-sm text-slate-600 leading-relaxed space-y-3 max-h-60 overflow-y-auto">
+        <!-- ========================================================
+             [คอมเม้นสำหรับนักพัฒนา / เจ้าของแอพ]
+             สามารถแก้ไขข้อความบอกลา อวยพร หรือความทรงจำเศร้าๆ เพิ่มเติมตรงนี้ได้เลย
+             ======================================================== -->
+        <p>หลังจากนี้เบบิไม่มีเค้าแล้วขอให้เบบิมีความสุขมากๆนะ 
+          ดูแลตัวเองดีๆด้วยนะเค้าเป็นห่วง ถ้าเค้ารู้ว่าเบบิเป็นไรไปเค้าคงเสียใจแย่ 
+          ละก็ยิ้มเยอะๆเพราะเวลาเบบิยิ้มมันน่ารักมากๆๆ 
+          นี่ๆๆสำคัญเลยเบบิต้องกินข้าวเยอะๆด้วย
+          ขอให้ชีวิตเบบิต่อไปมีแต่เรื่องราวดีๆเข้ามาไม่พบเจอเรื่องแย่ๆอีก
+          แล้วเค้าก็ดีใจมากๆแล้วที่ได้เข้าไปเป็นส่วนสำคัญในชีวิตเบบิให้ผ่านเรื่องแย่ๆไปได้  
+          ใช้ชีวิตให้มีความสุขมากๆนะเค้าจะคอยเป็นกำลังใจให้เบบิอยู่ห่างๆนะ ขอบคุณเบบิมากๆนะ เค้ารักเธอนะ
+         </p>
+        <p>ไว้วันไหนเราพบกันที่ไหนสักที่เบบิอย่าลืมทักเค้าด้วยนะ</p>
+      </div>
+
+      <button onclick="restartApp()" class="w-full py-3 bg-slate-400 hover:bg-slate-500 text-white font-medium rounded-xl text-sm transition-all shadow">
+        ถ้าเปลี่ยนใจกลับไปตอบใหม่ได้นะ หุหุ
+      </button>
+    </section>
+
+  </main>
+
+  <!-- Custom JavaScript -->
+  <script src="script.js"></script>
+</body>
+</html>
